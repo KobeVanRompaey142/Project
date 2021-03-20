@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Chiro KODB</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+
+
+<div class="row1">
+    <div class="row1content" th:if="${group}">
+        <h2 th:text="${group.groupName}" >groupdetails</h2>
+
+        <div class="groupinfo">
+            <div class="infoLine">
+                <div class="infoLineName">info:</div>
+                <div class="infoLineValue">
+                    <a th:href="${group.linkMoreInfo}" th:text="${group.linkMoreInfo}" target="_blank">linkMoreIfo</a>
+                </div>
+            </div>
+            <div class="infoLineName">adresse:</div>
+            <div class="infoLineValue">
+                <a th:text="${group.adresse}" >adresse</a>
+            </div>
+        </div>
+        <div class="infoLineName">startHour:</div>
+        <div class="infoLineValue">
+            <a  th:text="${group.startHour}" >startHour</a>
+        </div>
+
+    <div class="infoLineName">endHour:</div>
+    <div class="infoLineValue">
+        <a th:text="${group.endHour}" >endHour</a>
+    </div>
+    <div class="infoLineName">freeParkingAvailable:</div>
+    <div class="infoLineValue">
+        <a th:text="${group.freeParkingAvailable}" >freeParkingAvailable</a>
+    </div>
+    </div>
+</div>
+
+        <div class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/groupdetails/${prevId}|}">&lt;</a>
+        </div>
+        <div class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/groupdetails/${nextId}|}">&gt;</a>
+        </div>
+    </div>
+    <div class="row1content" th:unless="${group}">
+        <p>no group was chosen</p>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
+</body>
+</html>

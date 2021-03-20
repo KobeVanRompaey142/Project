@@ -1,0 +1,36 @@
+package be.thomasmore.party.controllers;
+
+import be.thomasmore.party.model.Activity;
+import be.thomasmore.party.model.Groupp;
+import be.thomasmore.party.repositories.ActivityRepository;
+import be.thomasmore.party.repositories.GroupRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Optional;
+
+@Controller
+public class HomeController {
+    @Autowired
+    private GroupRepository GroupRepository;
+    private ActivityRepository ActivitiesRepository;
+
+
+    private final String[] groupNames = {"sloeber", "speelclub", "rakkers", "toppers", "kerels", "aspiranten"};
+
+    @GetMapping({"/", "/home"})
+    public String home(Model model) {
+        return "home";
+    }
+
+    @GetMapping("/about")
+    public String about(Model model) {
+        return "about";
+    }
+
+
+
+}
