@@ -1,0 +1,72 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Chiro KODB</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+
+
+<div class="row1">
+    <div class="row1content" th:if="${news}">
+
+        <div class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/newsdetails/${prevId}|}">&lt;</a>
+        </div>
+        <div class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/newsdetails/${nextId}|}">&gt;</a>
+        </div>
+
+        <h2 th:text="${news.name}">newsdetails</h2>
+
+        <h3>
+            <span th:text="${news.date}">date</span>
+            op
+            <a th:href="@{|/activitydetails/${news.activity.id}|}" th:text="${news.activity.activityName}" class="linkLook">Activity</a>
+        </h3>
+
+        <div class="venueinfo">
+            <div class="infoLine" th:unless="${news.pricePresaleInEur!=null || news.priceInEur!=null}">
+                Free Activity
+            </div>
+            <div class="infoLine">
+                <div class="infoLineName">where:</div>
+                <div class="infoLineValue"
+                     th:text="|${news.activity.distanceFromChiroInKm}  km from chiro|">
+                    city and distance
+                </div>
+            </div>
+            <div class="infoLine" th:if="${news.pricePresaleInEur!=null || news.priceInEur!=null}">
+                <div class="infoLineName">price:</div>
+                <!--suppress SyntaxError -->
+                <div class="infoLineValue"
+                     th:text="|${news.pricePresaleInEur}${'&euro;'} (presale) / ${news.priceInEur}${'&euro;'}|">
+                    pricePresaleInEur and price
+                </div>
+            </div>
+
+            <div class="infoLine" th:if="${!news.extraInfo.isBlank()}">
+                <div class="infoLineName">extraInfo</div>
+                <div class="infoLineValue" th:text="${news.extraInfo}">extraInfo</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row1content" th:unless="${news}">
+        <p>no news was chosen</p>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
+</body>
+</html>

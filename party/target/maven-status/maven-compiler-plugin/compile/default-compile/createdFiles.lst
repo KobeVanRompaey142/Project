@@ -1,0 +1,14 @@
+be\thomasmore\party\model\Artist.class
+be\thomasmore\party\model\Animal.class
+be\thomasmore\party\controllers\HomeController.class
+be\thomasmore\party\controllers\ArtistController.class
+be\thomasmore\party\controllers\PartyController.class
+be\thomasmore\party\repositories\VenueRepository.class
+be\thomasmore\party\PartyApplication.class
+be\thomasmore\party\model\Party.class
+be\thomasmore\party\repositories\PartyRepository.class
+be\thomasmore\party\model\Venue.class
+be\thomasmore\party\controllers\AnimalController.class
+be\thomasmore\party\controllers\VenueController.class
+be\thomasmore\party\repositories\AnimalRepository.class
+be\thomasmore\party\repositories\ArtistRepository.class
